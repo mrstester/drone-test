@@ -3,22 +3,13 @@ type: docker
 name: default
 
 steps:
-  - name: hello
-    image: alpine:latest
-    commands:
-      - echo "Hello from Drone CI! 🚀"
-      - echo "Repository: $DRONE_REPO"
-      - echo "Branch: $DRONE_BRANCH"
-      - echo "Build Number: $DRONE_BUILD_NUMBER"
-
-  - name: test
-    image: alpine:latest
-    commands:
-      - echo "Running tests..."
-      - sleep 2
-      - echo "✅ All tests passed"
+- name: hello
+  image: alpine:latest
+  commands:
+  - echo "Hello from Drone CI!"
+  - echo "Repo: $DRONE_REPO"
+  - echo "Branch: $DRONE_BRANCH"
 
 trigger:
   branch:
-    - main
-    - master
+  - main

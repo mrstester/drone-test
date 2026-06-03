@@ -3,31 +3,20 @@ type: docker
 name: default
 
 steps:
-  - name: greet
+  - name: hello
     image: alpine:latest
     commands:
       - echo "Hello from Drone CI! 🚀"
-      - echo "Build started at: $(date)"
-      - echo "Running on branch: $DRONE_BRANCH"
-
-  - name: build
-    image: golang:1.22
-    commands:
-      - echo "Simulating Go build..."
-      - echo "✅ Build successful"
+      - echo "Repository: $DRONE_REPO"
+      - echo "Branch: $DRONE_BRANCH"
+      - echo "Build Number: $DRONE_BUILD_NUMBER"
 
   - name: test
-    image: node:20
-    commands:
-      - echo "Running tests..."
-      - echo "✅ All tests passed"
-
-  - name: notify
     image: alpine:latest
     commands:
-      - echo "🎉 Pipeline completed successfully!"
-    when:
-      status: [success]
+      - echo "Running tests..."
+      - sleep 2
+      - echo "✅ All tests passed"
 
 trigger:
   branch:
